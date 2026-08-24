@@ -1,0 +1,7 @@
+.vs/ 
+*.sqlite 
+*.db 
+*.suo 
+*.user 
+bin/ 
+obj/
