@@ -16,73 +16,46 @@ namespace miPrimeaAplicacion
         {
             InitializeComponent();
         }
-
-        // Matriz con los nombres de las unidades
+        /*
+          Metros, Cm, Pulgadas, Pies, Varas, Yardas, Km,Millas
+         */
         String[][] etiquetas = {
-            new string[]{"Metros", "Cm", "Pulgadas", "Pies", "Varas", "Yardas", "Km", "Millas"}, // Longitud
-            new string[]{"Dolar", "Quetzal", "Lempira", "Cordobas", "Colon CR"} // Monedas
+            new string[]{"Metros", "Cm", "Pulgadas", "Pies", "Varas", "Yardas", "Km","Millas"}, //Longitud
+            new string[]{"Dolar", "Quetzal","Lempira","Cordobas","Colon CR"}//Monedas
         };
-
-        // Matriz con las equivalencias
         Double[][] valores = {
-            new double[]{1, 100, 39.3701, 3.28084, 1.1963, 1.09361, 0.001, 0.000621371}, // Longitud
-            new double[]{1, 7.63, 26.81, 36.80, 449.23} // Monedas
+            new double[]{1, 100, 39.3701, 3.28084, 1.1963, 1.09361, 0.001, 0.000621371},
+            new double[]{1, 7.63, 26.81, 36.80, 449.23 }
         };
-
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Opcional: Cargar categorías si no las agregaste desde la propiedad Items del diseñador
-            if (comboBox1.Items.Count == 0)
-            {
-                comboBox1.Items.Add("Longitud");
-                comboBox1.Items.Add("Monedas");
-            }
+
+        }
+        private void btnCalcular_Click(object sender, EventArgs e)
+        {
+            int de = cboDe.SelectedIndex, a = cboA.SelectedIndex, opcion = cboOpciones.SelectedIndex;
+            double cantidad = Double.Parse(txtCantidad.Text);
+
+            double respuesta = valores[opcion][a] / valores[opcion][de] * cantidad;
+
+            lblRespuesta.Text = respuesta.ToString();
         }
 
-        // Evento del botón Calcular (button1)
-        private void button1_Click(object sender, EventArgs e)
+        private void cboOpciones_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
-                int de = comboBox2.SelectedIndex;
-                int a = comboBox3.SelectedIndex;
-                int opcion = comboBox1.SelectedIndex;
+            //Limpiamos los valores anteriores
+            cboDe.Items.Clear();
+            cboA.Items.Clear();
 
-                if (de != -1 && a != -1 && opcion != -1)
-                {
-                    double cantidad = Double.Parse(textBox1.Text);
+            //Asignamos los nuevos valores
+            int opcion = cboOpciones.SelectedIndex;
+            cboDe.Items.AddRange(etiquetas[opcion]);
+            cboA.Items.AddRange(etiquetas[opcion]);
+            String[] serie = txtSerie.Text.Split(',');
 
-                    // Fórmula de conversión
-                    double respuesta = valores[opcion][a] / valores[opcion][de] * cantidad;
-
-                    // Muestra el resultado (cambia label5 si tu etiqueta de resultado tiene otro nombre)
-                    label5.Text = respuesta.ToString("N4");
-                }
-                else
-                {
-                    MessageBox.Show("Por favor selecciona todas las opciones de conversión.");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ingresa una cantidad numérica válida: " + ex.Message);
-            }
-        }
-
-        // Evento de cambio de opción en comboBox1 (Opciones)
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Limpiamos las listas anteriores
-            comboBox2.Items.Clear();
-            comboBox3.Items.Clear();
-
-            // Asignamos las nuevas unidades según la categoría seleccionada
-            int opcion = comboBox1.SelectedIndex;
-            if (opcion >= 0 && opcion < etiquetas.Length)
-            {
-                comboBox2.Items.AddRange(etiquetas[opcion]);
-                comboBox3.Items.AddRange(etiquetas[opcion]);
-            }
+            ltsRespuesta.DataSource = serie.Select(n => int.Parse(n)).Where(n => n % 2 == 0)
+                .OrderBy(n => n)
+                .ToList();
         }
     }
 }

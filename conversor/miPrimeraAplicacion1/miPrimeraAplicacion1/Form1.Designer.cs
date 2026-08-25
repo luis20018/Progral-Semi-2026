@@ -1,55 +1,61 @@
-﻿namespace miPrimeaAplicacion
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace miPrimeaAplicacion
 {
-    partial class Form1
+    public partial class Form1 : Form
     {
-        /// <summary>
-        /// Variable del diseñador necesaria.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
-
-        /// <summary>
-        /// Limpiar los recursos que se estén usando.
-        /// </summary>
-        /// <param name="disposing">true si los recursos administrados se deben desechar; false en caso contrario.</param>
-        protected override void Dispose(bool disposing)
+        public Form1()
         {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
+            InitializeComponent();
         }
-
-        #region Código generado por el Diseñador de Windows Forms
-
-        /// <summary>
-        /// Método necesario para admitir el Diseñador. No se puede modificar
-        /// el contenido de este método con el editor de código.
-        /// </summary>
-        private void InitializeComponent()
+        /*
+          Metros, Cm, Pulgadas, Pies, Varas, Yardas, Km,Millas
+         */
+        String[][] etiquetas = {
+            new string[]{"Metros", "Cm", "Pulgadas", "Pies", "Varas", "Yardas", "Km","Millas"}, //Longitud
+            new string[]{"Dolar", "Quetzal","Lempira","Cordobas","Colon CR"}//Monedas
+        };
+        Double[][] valores = {
+            new double[]{1, 100, 39.3701, 3.28084, 1.1963, 1.09361, 0.001, 0.000621371},
+            new double[]{1, 7.63, 26.81, 36.80, 449.23 }
+        };
+        private void Form1_Load(object sender, EventArgs e)
         {
-            this.SuspendLayout();
-            // 
-            // Form1
-            // 
-            this.ClientSize = new System.Drawing.Size(769, 407);
-            this.Name = "Form1";
-            this.ResumeLayout(false);
 
         }
+        private void btnCalcular_Click(object sender, EventArgs e)
+        {
+            int de = cboDe.SelectedIndex, a = cboA.SelectedIndex, opcion = cboOpciones.SelectedIndex;
+            double cantidad = Double.Parse(txtCantidad.Text);
 
-        #endregion
+            double respuesta = valores[opcion][a] / valores[opcion][de] * cantidad;
 
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button1;
+            lblRespuesta.Text = respuesta.ToString();
+        }
+
+        private void cboOpciones_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Limpiamos los valores anteriores
+            cboDe.Items.Clear();
+            cboA.Items.Clear();
+
+            //Asignamos los nuevos valores
+            int opcion = cboOpciones.SelectedIndex;
+            cboDe.Items.AddRange(etiquetas[opcion]);
+            cboA.Items.AddRange(etiquetas[opcion]);
+            String[] serie = txtSerie.Text.Split(',');
+
+            ltsRespuesta.DataSource = serie.Select(n => int.Parse(n)).Where(n => n % 2 == 0)
+                .OrderBy(n => n)
+                .ToList();
+        }
     }
 }
-
