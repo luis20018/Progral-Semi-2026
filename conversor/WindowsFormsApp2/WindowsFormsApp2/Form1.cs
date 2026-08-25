@@ -19,7 +19,7 @@ namespace WindowsFormsApp2
             InitializeComponent();
         }
 
-        // Matriz con las 5 categorías y sus 8 opciones cada una
+        // Matriz con las 5 categorías 
         String[][] etiquetas = {
             // 0: Longitud (Base: Metro)
             new string[]{"Metros", "Cm", "Pulgadas", "Pies", "Varas", "Yardas", "Km", "Millas"},
@@ -58,32 +58,36 @@ namespace WindowsFormsApp2
         private void Form1_Load(object sender, EventArgs e)
         {
             // Carga las 5 categorías principales al abrir la aplicación
-            comboBox1.Items.Clear();
-            comboBox1.Items.Add("Longitud");
-            comboBox1.Items.Add("Monedas");
-            comboBox1.Items.Add("Masa");
-            comboBox1.Items.Add("Almacenamiento");
-            comboBox1.Items.Add("Tiempo");
+            cbo1.Items.Clear();
+            cbo1.Items.Add("Longitud");
+            cbo1.Items.Add("Monedas");
+            cbo1.Items.Add("Masa");
+            cbo1.Items.Add("Almacenamiento");
+            cbo1.Items.Add("Tiempo");
 
-            comboBox1.SelectedIndex = 0; // Selecciona "Longitud" de inicio
+            cbo1.SelectedIndex = 0; // Selecciona "Longitud" de inicio
         }
 
         // Evento que actualiza las opciones de comboBox2 y comboBox3
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            comboBox2.Items.Clear();
-            comboBox3.Items.Clear();
+            cbo2.SelectedIndex = -1;
+            cbo3.SelectedIndex = -1;
+            cbo2.Text = "";
+            cbo3.Text = ""; 
+            cbo2.Items.Clear();
+            cbo3.Items.Clear();
 
-            int opcion = comboBox1.SelectedIndex;
+            int opcion = cbo1.SelectedIndex;
 
             if (opcion >= 0 && opcion < etiquetas.Length)
             {
-                comboBox2.Items.AddRange(etiquetas[opcion]);
-                comboBox3.Items.AddRange(etiquetas[opcion]);
+                cbo2.Items.AddRange(etiquetas[opcion]);
+                cbo3.Items.AddRange(etiquetas[opcion]);
 
                 // Selecciona por defecto la primera opción de la lista
-                comboBox2.SelectedIndex = 0;
-                comboBox3.SelectedIndex = 0;
+                cbo2.SelectedIndex = -1;
+                cbo3.SelectedIndex = -1;
             }
         }
 
@@ -98,13 +102,13 @@ namespace WindowsFormsApp2
         {
             try
             {
-                int de = comboBox2.SelectedIndex;
-                int a = comboBox3.SelectedIndex;
-                int opcion = comboBox1.SelectedIndex;
+                int de = cbo2.SelectedIndex;
+                int a = cbo3.SelectedIndex;
+                int opcion = cbo1.SelectedIndex;
 
                 if (de != -1 && a != -1 && opcion != -1)
                 {
-                    double cantidad = Double.Parse(textBox1.Text);
+                    double cantidad = Double.Parse(txt1.Text);
                     double respuesta = valores[opcion][a] / valores[opcion][de] * cantidad;
 
                     label5.Text = respuesta.ToString();
