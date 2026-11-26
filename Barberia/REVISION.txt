@@ -1,0 +1,8 @@
+﻿Barberia11 — revisión
+CRUD básicos: Clientes, Empleados, Servicios, Productos, Usuarios (Gestión).
+Intermedios: Horarios, Recordatorios, Movimientos (Gestión).
+Avanzados: Operaciones.aspx cita, factura, pago; acceso desde Configuración.
+Los recordatorios se entregan dentro del portal del cliente al consultar; no SMS ni correo.
+La recomendación usa filtrado colaborativo por historial.
+Pruebas pendientes en Windows: PREPARAR, abrir sitio, compilar, iniciar sesión y probar altas, cambios, bajas, búsquedas y reportes.
+No se ha publicado en GitHub.

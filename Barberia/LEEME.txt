@@ -1,0 +1,10 @@
+﻿BARBERÍA — C# / ASP.NET Web Forms / SQL Server / EF 6.4.4
+1. Extraer ZIP. Ejecutar PREPARAR.cmd desde la carpeta extraída (o restaurar EntityFramework 6.4.4 desde NuGet). Requiere Internet.
+2. Visual Studio 2019: Archivo > Abrir > Sitio web, seleccionar esta carpeta. Login.aspx como inicio.
+3. Ctrl+F5. Usa la base db_barberia existente; no se elimina ni se migra. Para una base nueva, usuario inicial barberia / barberia123. Cambiar la clave antes de publicar.
+Diseño CSS conservado. EF se usa en API de servicios y catálogo del cliente; las operaciones transaccionales existentes usan SQL parametrizado.
+Incluye formularios CRUD genéricos, agenda, facturación, pagos, diez informes y recomendaciones por filtrado colaborativo. Los recordatorios se administran, pero no se envían automáticamente por correo/WhatsApp. No se ha probado compilación ni ejecución en Windows. La política de control de aplicaciones de Windows puede seguir bloqueando DLL generadas. No desactivar seguridad para ejecutar.
+
+Correcciones: arreglos SqlParameter[] en Registro y Accesos; archivos UTF-8 con BOM y configuración global UTF-8. Si ya instaló Entity Framework en el sitio anterior, copie sus dos DLL de Bin a Bin de este sitio, o use PREPARAR.cmd.
+
+Login.aspx usa directamente Datos; PREPARAR.cmd no ejecuta PowerShell.

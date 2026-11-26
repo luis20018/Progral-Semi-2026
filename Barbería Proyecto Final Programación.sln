@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.37627.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Barberia(3)", "Barberia\", "{D1AB0C9E-57A9-45B0-A577-83EB068DE083}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_63243"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\..\Downloads\Barberia11 (4)\Barberia\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_63243\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_63243"
+		Release.AspNetCompiler.PhysicalPath = "..\..\..\Downloads\Barberia11 (4)\Barberia\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_63243\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "63243"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D1AB0C9E-57A9-45B0-A577-83EB068DE083}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1AB0C9E-57A9-45B0-A577-83EB068DE083}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {697F829A-09D4-44AA-8756-4EEDC7822A03}
+	EndGlobalSection
+EndGlobal
